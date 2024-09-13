@@ -3,6 +3,26 @@
 // Reference: https://playgameoflife.com/info
 void JohnConway::Step(World& world) {
   // todo: implement
+  int worldSize = world.SideSize();
+
+  for (int y = 0; y < worldSize; y++) {
+    for (int x = 0; x < worldSize; x++) {
+      Point2D testPoint(x,y);
+      int livingNeighbors = CountNeighbors(world, testPoint);
+
+      world.SetNext(testPoint, world.Get(testPoint)); //assumes the cell won't change by default
+
+      if(world.Get(testPoint)) { //checks if cell is alive
+        if(livingNeighbors < 2 || livingNeighbors > 3) { //checks if cell should die
+          world.SetNext(testPoint, false);
+        }
+      }
+
+      else if(livingNeighbors == 3) { //if the cell is dead, checks if it should be alive
+           world.SetNext(testPoint, true);
+      }
+    }
+  }
 }
 
 int JohnConway::CountNeighbors(World& world, Point2D point) {
