@@ -112,7 +112,6 @@ std::vector<Point2D> RecursiveBacktrackerExample::getVisitables(World* w, const 
   if (checkVisitable(left, sideOver2)) {
     visitables.push_back(left);
   }
-  std::cout<<"visitables size: "<<visitables.size()<<std::endl;
 
   return visitables;
 }
