@@ -63,13 +63,10 @@ std::vector<Point2D> Agent::generatePath(World* w) {
   if(borderExit != Point2D::INFINITE) {
     std::vector<Point2D> path;
     Point2D p = borderExit;
-    while(true) {
+    while(p != catPos) {
       path.push_back(p);
       if(cameFrom.contains(p)) {
         p = cameFrom[p];
-        if(p == catPos) {
-          break;
-        }
       }
       else {
         break;
